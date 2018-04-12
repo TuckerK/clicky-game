@@ -10,13 +10,25 @@ class App extends Component {
     cardInfo
   };
 
+  randomizeImages = () => {
+    const cardInfo = this.state.cardInfo.sort(image => {
+      return 0.5 - Math.random();
+    });
+    this.setState({ cardInfo });
+  };
+
   render() {
     return (
       <div>
         <Title />
         <Wrapper>
           {this.state.cardInfo.map(card => (
-            <ImageCard id={card.id} key={card.id} image={card.image} />
+            <ImageCard
+              randomizeImages={this.randomizeImages}
+              id={card.id}
+              key={card.id}
+              image={card.image}
+            />
           ))}
         </Wrapper>
       </div>
